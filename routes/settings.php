@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ThemeSettingsController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\TwoFactorAuthenticationController;
@@ -25,4 +26,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('settings/two-factor', [TwoFactorAuthenticationController::class, 'show'])
         ->name('two-factor.show');
+
+    // Admin theme settings
+    Route::get('settings/theme', [ThemeSettingsController::class, 'index'])
+        ->name('theme.index');
+    Route::put('settings/theme', [ThemeSettingsController::class, 'update'])
+        ->name('theme.update');
 });

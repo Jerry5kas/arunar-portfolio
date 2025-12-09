@@ -8,10 +8,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+    /* Luxury Font System */
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Neue Haas Grotesk Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-accent: 'Cormorant Garamond', Georgia, serif;
+    
+    /* Legacy/Default */
+    --font-sans: var(--font-body);
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -62,20 +65,26 @@
 }
 
 :root {
+    /* Dynamic theme colors - set by useTheme hook */
+    --theme-primary: #000000;
+    --theme-secondary: #FFFFFF;
+    --theme-accent: #D4AF37;
+    --theme-accent-secondary: #B8860B;
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
+    --primary: var(--theme-primary);
+    --primary-foreground: var(--theme-secondary);
+    --secondary: var(--theme-secondary);
+    --secondary-foreground: var(--theme-primary);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --accent: var(--theme-accent);
+    --accent-foreground: var(--theme-primary);
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
     --border: oklch(0.922 0 0);
@@ -89,8 +98,8 @@
     --radius: 0.625rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-primary: var(--theme-primary);
+    --sidebar-primary-foreground: var(--theme-secondary);
     --sidebar-accent: oklch(0.97 0 0);
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
@@ -139,5 +148,30 @@
 
     body {
         @apply bg-background text-foreground;
+        font-family: var(--font-body);
+    }
+
+    /* Heading styles with Playfair Display */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+    }
+
+    h1 {
+        font-weight: 900;
+    }
+
+    /* Accent font for special text */
+    .font-accent {
+        font-family: var(--font-accent);
+    }
+
+    /* Utility classes for luxury font system */
+    .font-heading {
+        font-family: var(--font-heading);
+    }
+
+    .font-body {
+        font-family: var(--font-body);
     }
 }

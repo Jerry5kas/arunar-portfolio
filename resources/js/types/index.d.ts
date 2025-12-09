@@ -22,11 +22,28 @@ export interface NavItem {
     isActive?: boolean;
 }
 
+export interface Theme {
+    primaryColor: string;
+    secondaryColor: string;
+    accentColor: string;
+    accentSecondaryColor: string;
+    fontFamily: string;
+    fontUrl: string;
+    fontHeadingFamily: string;
+    fontBodyFamily: string;
+    fontAccentFamily: string;
+    fontHeadingUrl: string;
+    fontBodyUrl: string;
+    fontAccentUrl: string;
+    logoUrl: string;
+}
+
 export interface SharedData {
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
     sidebarOpen: boolean;
+    theme: Theme;
     [key: string]: unknown;
 }
 

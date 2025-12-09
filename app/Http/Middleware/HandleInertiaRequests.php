@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ThemeSetting;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -38,6 +40,8 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
+        $themeSettings = ThemeSetting::allAsArray();
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -46,6 +50,25 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'theme' => [
+                'primaryColor' => $themeSettings['primary_color'] ?? '#000000',
+                'secondaryColor' => $themeSettings['secondary_color'] ?? '#FFFFFF',
+                'accentColor' => $themeSettings['accent_color'] ?? '#D4AF37',
+                'accentSecondaryColor' => $themeSettings['accent_secondary_color'] ?? '#B8860B',
+                'fontFamily' => $themeSettings['font_body_family'] ?? 'Neue Haas Grotesk Display',
+                'fontUrl' => $themeSettings['font_url'] ?? 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Neue+Haas+Grotesk+Display:wght@300;400;500;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap',
+                'fontHeadingFamily' => $themeSettings['font_heading_family'] ?? 'Playfair Display',
+                'fontBodyFamily' => $themeSettings['font_body_family'] ?? 'Neue Haas Grotesk Display',
+                'fontAccentFamily' => $themeSettings['font_accent_family'] ?? 'Cormorant Garamond',
+                'fontHeadingUrl' => $themeSettings['font_heading_url'] ?? 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap',
+                'fontBodyUrl' => $themeSettings['font_body_url'] ?? 'https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display:wght@300;400;500;700&display=swap',
+                'fontAccentUrl' => $themeSettings['font_accent_url'] ?? 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap',
+                'logoUrl' => !empty($themeSettings['logo_url']) 
+                    ? (filter_var($themeSettings['logo_url'], FILTER_VALIDATE_URL) 
+                        ? $themeSettings['logo_url'] 
+                        : Storage::url($themeSettings['logo_url']))
+                    : '',
+            ],
         ];
     }
 }
