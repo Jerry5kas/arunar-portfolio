@@ -45,6 +45,7 @@ const milestones = [
 
 export default function Welcome() {
     const [activeTimelineIndex, setActiveTimelineIndex] = useState(0);
+    const [timelineTransitioning, setTimelineTransitioning] = useState(false);
     return (
         <SiteLayout>
             <Head title="Home" />
@@ -55,7 +56,7 @@ export default function Welcome() {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.12),transparent_70%)]" />
 
                     <div className="relative z-10 w-full px-0 py-8 sm:px-0">
-                        <div className="w-full h-screen max-h-[900px] overflow-hidden rounded-none border border-white/15 shadow-2xl shadow-black/50 backdrop-blur-sm sm:rounded-3xl">
+                        <div className="w-full h-screen max-h-[900px] overflow-hidden shadow-2xl shadow-black/50 backdrop-blur-sm">
                             <video
                                 src="/video/demo-hero.mp4"
                                 poster=""
@@ -71,7 +72,7 @@ export default function Welcome() {
                 </section>
 
                 {/* About with quote, signature, left-side portrait */}
-                <section className="relative min-h-[80vh] overflow-hidden bg-black">
+                <section className="relative min-h-screen overflow-hidden bg-black">
                     {/* Animated scrolling text - Left side (Desktop only) */}
                     <div className="pointer-events-none absolute left-0 top-0 z-0 hidden h-full w-[75%] overflow-hidden px-20 md:block">
                         <div
@@ -116,12 +117,12 @@ export default function Welcome() {
                         </div>
                     </div> */}
 
-                    <div className="relative z-10 grid min-h-[80vh] gap-12 px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
-                        <div className="relative mx-auto flex w-full max-w-2xl items-end self-end">
+                    <div className="relative z-10 grid min-h-screen items-center gap-10 px-6 sm:px-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-14">
+                        <div className="relative mx-auto -mb-24 flex w-full max-w-2xl items-end justify-center sm:-mb-28 lg:-mb-32">
                             <img
                                 src="/images/avatar.png"
                                 alt="Arunar portrait"
-                                className="aspect-[3/4] w-full max-h-[70vh] object-contain"
+                                className="aspect-[3/4] w-full max-h-[95vh] object-contain"
                                 style={{ clipPath: 'ellipse(78% 65% at 50% 42%)' }}
                             />
                         </div>
@@ -152,7 +153,7 @@ export default function Welcome() {
                     <Swiper
                         modules={[Navigation, Pagination]}
                         direction="vertical"
-                        speed={800}
+                        speed={1400}
                         navigation={{
                             nextEl: '.swiper-button-next-timeline',
                             prevEl: '.swiper-button-prev-timeline',
@@ -166,6 +167,8 @@ export default function Welcome() {
                         allowTouchMove
                         className="timeline-swiper timeline-swiper-vertical h-full"
                         onSlideChange={(swiper) => setActiveTimelineIndex(swiper.activeIndex)}
+                        onSlideChangeTransitionStart={() => setTimelineTransitioning(true)}
+                        onSlideChangeTransitionEnd={() => setTimelineTransitioning(false)}
                     >
                         {milestones.map((milestone, idx) => (
                             <SwiperSlide key={milestone.year}>
@@ -178,7 +181,11 @@ export default function Welcome() {
                                     }}
                                 >
                                     <div className="absolute inset-0 bg-black/35 backdrop-blur-[2px]" />
-                                    <div className="relative z-10 flex flex-row w-full max-w-6xl items-center justify-center gap-x-10 px-6 lg:px-10">
+                                    <div
+                                        className={`relative z-10 flex flex-row w-full max-w-6xl items-center justify-center gap-x-10 px-6 lg:px-10 transition-all duration-500 ease-out ${
+                                            timelineTransitioning ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'
+                                        }`}
+                                    >
                                         <div className="flex flex-row items-center justify-center gap-6">
                                         <div className="flex flex-col items-center gap-3 text-right text-[#d4af37] lg:items-start lg:pr-8">
                                             <p className="text-5xl uppercase tracking-[0.22em]">{milestone.year}</p>
