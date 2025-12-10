@@ -2,6 +2,11 @@
 
 @import "tw-animate-css";
 
+/* Swiper CSS */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
@@ -19,13 +24,13 @@
     }
 }
 
-/* About section scrolling text animation */
+/* About section scrolling text animation - continuous scroll */
 @keyframes scrollUp {
-    from {
-        transform: translateY(100%);
+    0% {
+        transform: translateY(0%);
     }
-    to {
-        transform: translateY(-100%);
+    100% {
+        transform: translateY(-50%);
     }
 }
 
@@ -196,4 +201,47 @@
     .font-body {
         font-family: var(--font-body);
     }
+}
+
+.timeline-swiper-vertical .swiper-pagination-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    position: relative;
+}
+
+.timeline-swiper-vertical .swiper-pagination-timeline .swiper-pagination-bullet {
+    width: auto;
+    height: auto;
+    padding: 0.3rem 0.8rem;
+    min-width: 3.5rem;
+    border-radius: 9999px;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    opacity: 1 !important;
+}
+
+.timeline-swiper-vertical .swiper-wrapper {
+    transition-timing-function: cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+.timeline-nav {
+    pointer-events: none;
+}
+
+.timeline-nav .swiper-pagination-timeline .swiper-pagination-bullet {
+    min-width: 4.5rem;
+    text-align: center;
+}
+
+.timeline-swiper-vertical .swiper-pagination-timeline .swiper-pagination-bullet-active {
+    background: transparent;
+    border-bottom-color: #d4af37;
+    color: #d4af37;
+    opacity: 1 !important;
 }
