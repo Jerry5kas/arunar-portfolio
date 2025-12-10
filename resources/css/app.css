@@ -7,6 +7,28 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Navbar animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* About section scrolling text animation */
+@keyframes scrollUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
 @theme {
     /* Luxury Font System */
     --font-heading: 'Playfair Display', Georgia, serif;

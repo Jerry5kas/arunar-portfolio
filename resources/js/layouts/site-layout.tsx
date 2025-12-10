@@ -13,7 +13,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
     return (
         <div className="flex min-h-screen flex-col bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#0a0a0a] dark:text-[#EDEDEC]">
             <SiteNavbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 pt-0">{children}</main>
             <SiteFooter />
         </div>
     );
