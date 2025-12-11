@@ -11,45 +11,67 @@ export default function About() {
     return (
         <SiteLayout>
             <Head title="About" />
-            <div className="space-y-20 bg-gradient-to-b from-white via-[#fbf7ef] to-[#f5efe3] px-6 pb-24 pt-14 text-[#1b1a16] dark:from-[#0b0a0a] dark:via-[#0d0c0b] dark:to-[#0f0d0b] lg:px-12">
-                {/* Hero */}
-                <section className="relative overflow-hidden rounded-[32px] border border-black/5 bg-white/90 shadow-[0_26px_90px_rgba(0,0,0,0.08)] backdrop-blur dark:border-white/10 dark:bg-[#0f0d0b]/90 dark:shadow-[0_26px_90px_rgba(0,0,0,0.45)]">
-                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.18),transparent_38%),radial-gradient(circle_at_70%_10%,rgba(255,255,255,0.12),transparent_32%),radial-gradient(circle_at_80%_80%,rgba(212,175,55,0.14),transparent_32%)]" />
-                    <div className="pointer-events-none absolute inset-0 flex items-start justify-center pt-10 text-[16vw] font-extrabold uppercase leading-none text-[#ece5d5] opacity-70 mix-blend-multiply dark:text-white/5 lg:text-[9vw]">
-                        <span>About</span>
-                    </div>
-                    <div className="relative grid items-center gap-10 px-8 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:px-16">
-                        <div className="space-y-6">
-                            <p className="text-sm uppercase tracking-[0.28em] text-[#8a7b55] dark:text-[#cbb478]">Perfection</p>
-                            <h1 className="text-3xl font-semibold leading-tight text-[#1b1a16] dark:text-white lg:text-4xl">
-                                “Let the drive for perfection start from within.”
-                            </h1>
-                            <div className="pt-4">
-                                <p className="text-base font-semibold uppercase tracking-[0.18em] text-[#9b8b4b] dark:text-[#e3c464]">Arunar</p>
-                                <p className="text-xs uppercase tracking-[0.22em] text-[#7a725f] dark:text-[#cbb478]">Founder & CEO</p>
-                            </div>
+            <div className="bg-gradient-to-b from-[#fdf8f1] via-[#fffaf5] to-[#f4eee3] text-[#1b1a16] dark:from-[#090807] dark:via-[#0c0b09] dark:to-[#0f0d0b]">
+                {/* Hero - mirrors welcome page mood, no framed container */}
+                <section className="relative min-h-screen overflow-hidden bg-black text-white">
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/80 to-black/90" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_40%,rgba(212,175,55,0.14),transparent_60%)]" />
+
+                    <div className="relative z-10 grid min-h-screen items-center gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-14">
+                        <div className="relative order-2 mx-auto flex w-full max-w-2xl justify-center lg:order-1">
+                            <img
+                                src="/images/about.png"
+                                alt="Arunar seated portrait"
+                                className="aspect-[3/4] w-full max-h-[90vh] object-cover shadow-[0_30px_120px_rgba(0,0,0,0.55)]"
+                                style={{ clipPath: 'ellipse(78% 65% at 50% 42%)' }}
+                            />
                         </div>
-                        <div className="relative">
-                            <div className="absolute -inset-6 -z-10 rounded-[36px] bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.15),transparent_32%),radial-gradient(circle_at_50%_90%,rgba(112,82,40,0.12),transparent_40%)] blur-3xl" />
-                            <div className="overflow-hidden rounded-[42px] border border-black/10 bg-white shadow-[0_28px_90px_rgba(0,0,0,0.12)] dark:border-white/10 dark:bg-[#111010]">
-                                <img
-                                    src="/images/about.jpg"
-                                    alt="Arunar seated portrait"
-                                    className="w-full object-cover"
-                                />
+
+                        <div className="order-1 flex flex-col gap-6 lg:order-2">
+                            <p className="text-sm uppercase tracking-[0.24em] text-[#d4af37]">Excellency</p>
+                            <h1 className="text-3xl font-semibold leading-tight text-white lg:text-4xl">
+                                “Creating standards. Elevating experiences. Redefining progress.”
+                            </h1>
+                            <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+                            <div className="space-y-3 text-white/80">
+                                <p className="text-lg leading-relaxed">
+                                    Founder & CEO
+                                </p>
+                                <p className="text-sm uppercase tracking-[0.18em] text-[#d4af37]">Arunar</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Story */}
-                <section className="mx-auto max-w-5xl space-y-8 rounded-[28px] border border-black/5 bg-white/95 p-10 shadow-[0_22px_70px_rgba(0,0,0,0.08)] backdrop-blur dark:border-white/10 dark:bg-[#11100d]/90 dark:text-[#f0eadc]">
-                    <p className="text-sm uppercase tracking-[0.28em] text-[#8a7b55] dark:text-[#cbb478]">Story</p>
-                    <h2 className="text-3xl font-semibold text-[#1b1a16] dark:text-white">Founder & Chairman</h2>
-                    <div className="space-y-5 text-base leading-relaxed text-[#3f3a31] dark:text-[#d6cdb6]">
-                        {aboutIntro.map((para) => (
-                            <p key={para}>{para}</p>
-                        ))}
+                {/* Story - clean flowing layout, no borders */}
+                <section className="relative overflow-hidden bg-black text-white">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,175,55,0.08),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.08),transparent_28%)]" />
+                    <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-20 sm:px-10 lg:px-14">
+                        <div className="space-y-4">
+                            <p className="text-sm uppercase tracking-[0.24em] text-[#d4af37]">Story</p>
+                            <h2 className="text-3xl font-semibold lg:text-4xl">Founder & Chairman</h2>
+                            <p className="max-w-3xl text-base leading-relaxed text-white/85">
+                                A journey shaped by resilience, vision, and the pursuit of excellence across industries.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                            <div className="space-y-5 text-base leading-relaxed text-white/85">
+                                {aboutIntro.map((para) => (
+                                    <p key={para}>{para}</p>
+                                ))}
+                            </div>
+
+                            <div className="space-y-4 text-white/80">
+                                <div className="flex flex-wrap items-baseline gap-3">
+                                    <span className="text-5xl font-semibold text-[#d4af37]">2010</span>
+                                    <span className="text-sm uppercase tracking-[0.24em] text-white/60">Founded The Stage 365</span>
+                                </div>
+                                <p>Multi-industry expansion spanning real estate, construction, interiors, and events.</p>
+                                <p>Integrated brands built around sustainability, luxury design, and customer-first delivery.</p>
+                                <p>Continual innovation and corporate structuring to create lasting urban impact.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>

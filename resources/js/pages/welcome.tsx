@@ -10,42 +10,50 @@ const milestones = [
         title: 'The Rise of Nesthetix Designs LLP',
         detail:
             'Rebranded the interior design division into a bespoke luxury studio blending modern aesthetics with functional elegance.',
+        image: '/images/2025.png',
     },
     {
         year: '2024',
         title: 'The Birth of Atha Construction Pvt. Ltd.',
         detail: 'Spun off construction into a sustainability-first company delivering eco-conscious, structurally sound builds.',
+        image: '/images/2024.png',
     },
     {
         year: '2023',
         title: 'Corporate Evolution & Growth',
         detail: 'Formed Area24 Developers and Stagecstatic365 Media House to scale real estate and experiential media.',
+        image: '/images/2023.png',
     },
     {
         year: '2020',
         title: 'Structuring Real Estate',
         detail: 'Formalized Area24 Realty as a proprietorship to streamline operations and deepen client trust across services.',
+        image: '/images/2020.png',
     },
     {
         year: '2018',
         title: 'Venturing into Luxury Interior Design',
         detail: 'Expanded into personalized high-end interiors with timeless elegance and premium craftsmanship.',
+        image: '/images/2018.png',
     },
     {
         year: '2016',
         title: 'Property Development & Management',
         detail: 'Grew Area24 into full-service development, construction, sales, and property management for holistic delivery.',
+        image: '/images/2016.png',
     },
     {
         year: '2010',
         title: 'The Foundation of a Vision',
         detail: 'Launched The Stage 365 and Area24 Realty, setting roots in event mastery and premium real estate consulting.',
+        image: '/images/2010.png',
     },
 ];
 
 export default function Welcome() {
     const [activeTimelineIndex, setActiveTimelineIndex] = useState(0);
     const [timelineTransitioning, setTimelineTransitioning] = useState(false);
+    const [timelineSwiper, setTimelineSwiper] = useState<any>(null);
     return (
         <SiteLayout>
             <Head title="Home" />
@@ -78,7 +86,7 @@ export default function Welcome() {
                         <div
                             className="scrolling-text-left flex h-[200%] flex-col gap-10"
                             style={{
-                                animation: 'scrollUp 120s linear infinite',
+                                animation: 'scrollUp 90s linear infinite',
                                 willChange: 'transform',
                                 transform: 'translateY(0%)'
                             }}
@@ -148,12 +156,12 @@ export default function Welcome() {
                 </section>
 
                 {/* Timeline */}
-                <section className="relative h-[30rem] overflow-hidden bg-black text-white">
+                <section className="relative h-[35rem] overflow-hidden bg-black text-white sm:h-[30rem]">
                     {/* Background */}
                     <Swiper
                         modules={[Navigation, Pagination]}
                         direction="vertical"
-                        speed={1400}
+                        speed={800}
                         navigation={{
                             nextEl: '.swiper-button-next-timeline',
                             prevEl: '.swiper-button-prev-timeline',
@@ -166,6 +174,7 @@ export default function Welcome() {
                         slidesPerView={1}
                         allowTouchMove
                         className="timeline-swiper timeline-swiper-vertical h-full"
+                        onSwiper={(swiper) => setTimelineSwiper(swiper)}
                         onSlideChange={(swiper) => setActiveTimelineIndex(swiper.activeIndex)}
                         onSlideChangeTransitionStart={() => setTimelineTransitioning(true)}
                         onSlideChangeTransitionEnd={() => setTimelineTransitioning(false)}
@@ -175,27 +184,57 @@ export default function Welcome() {
                                 <div
                                     className="relative flex h-full w-full items-center justify-center"
                                     style={{
-                                        backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%), url('/images/banner.jpg')`,
+                                        backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%), url('${milestone.image}')`,
                                         backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
+                                        backgroundPosition: 'top center',
                                     }}
                                 >
-                                    <div className="absolute inset-0 bg-black/35 backdrop-blur-[2px]" />
+                                    <div className="absolute inset-0 bg-black/35 backdrop-blur-[1px]" />
+                                    
+                                    {/* Mobile: Simple Stacked Layout */}
                                     <div
-                                        className={`relative z-10 flex flex-row w-full max-w-6xl items-center justify-center gap-x-10 px-6 lg:px-10 transition-all duration-500 ease-out ${
+                                        className={`relative z-10 flex w-full flex-col items-center justify-center gap-6 px-6 py-8 transition-all duration-500 ease-out sm:hidden ${
+                                            timelineTransitioning ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'
+                                        }`}
+                                    >
+                                        <p className="text-4xl font-bold uppercase tracking-[0.22em] text-[#d4af37]">{milestone.year}</p>
+                                        <h2 className="text-2xl font-semibold leading-tight text-center text-white">{milestone.title}</h2>
+                                        <p className="max-w-md text-center text-sm leading-relaxed text-white/90">
+                                            {milestone.detail}
+                                        </p>
+                                        <div className="mt-4 flex items-center gap-4">
+                                            <button className="swiper-button-prev-timeline flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/50 text-[#d4af37] backdrop-blur-sm transition hover:bg-black/70">
+                                                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                                </svg>
+                                            </button>
+                                            <span className="text-xs text-white/60">
+                                                {activeTimelineIndex + 1} / {milestones.length}
+                                            </span>
+                                            <button className="swiper-button-next-timeline flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/50 text-[#d4af37] backdrop-blur-sm transition hover:bg-black/70">
+                                                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Desktop: Original Complex Layout */}
+                                    <div
+                                        className={`relative z-10 hidden w-full max-w-6xl flex-row items-center justify-center gap-x-10 px-6 transition-all duration-500 ease-out sm:flex lg:px-10 ${
                                             timelineTransitioning ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'
                                         }`}
                                     >
                                         <div className="flex flex-row items-center justify-center gap-6">
-                                        <div className="flex flex-col items-center gap-3 text-right text-[#d4af37] lg:items-start lg:pr-8">
-                                            <p className="text-5xl uppercase tracking-[0.22em]">{milestone.year}</p>
-                                        </div>
-                                        <div className="mx-auto max-w-2xl text-center lg:text-left lg:pl-10">
-                                            <h2 className="text-4xl font-semibold leading-tight text-white lg:text-5xl">{milestone.title}</h2>
-                                            <p className="mt-4 text-base leading-relaxed text-white/85 lg:text-lg">
-                                                {milestone.detail}
-                                            </p>
-                                        </div>
+                                            <div className="flex flex-col items-center gap-3 text-right text-[#d4af37] lg:items-start lg:pr-8">
+                                                <p className="text-5xl uppercase tracking-[0.22em]">{milestone.year}</p>
+                                            </div>
+                                            <div className="mx-auto max-w-2xl text-center lg:text-left lg:pl-10">
+                                                <h2 className="text-4xl font-semibold leading-tight text-white lg:text-5xl">{milestone.title}</h2>
+                                                <p className="mt-4 text-base leading-relaxed text-white/85 lg:text-lg">
+                                                    {milestone.detail}
+                                                </p>
+                                            </div>
                                         </div>
                                         <div className="h-48 w-px bg-white/25 rounded-full" />
                                         <div className="flex flex-col items-center justify-center gap-3">
@@ -204,21 +243,25 @@ export default function Welcome() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                                 </svg>
                                             </button>
-
-
                                             {milestones.map((yearItem, yearIdx) => (
                                                 <li
                                                     key={yearItem.year}
-                                                    className={
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        if (timelineSwiper && timelineSwiper.slideTo) {
+                                                            timelineSwiper.slideTo(yearIdx, 800);
+                                                        }
+                                                    }}
+                                                    className={`cursor-pointer transition-opacity hover:opacity-80 ${
                                                         yearIdx === activeTimelineIndex
                                                             ? 'text-[#d4af37] tracking-[0.22em] font-bold'
-                                                            : ''
-                                                    }
+                                                            : 'text-white/70'
+                                                    }`}
                                                 >
                                                     {yearItem.year}
                                                 </li>
                                             ))}
-
                                             <button className="swiper-button-next-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/60 text-[#d4af37] backdrop-blur-sm transition hover:scale-105 hover:border-[#d4af37]/60 hover:bg-black/80">
                                                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
