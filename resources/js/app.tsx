@@ -112,21 +112,23 @@ initializeTheme();
         }
         frameSkip = 0;
         
-        // Only apply momentum when user has clearly stopped scrolling
-        if (timeSinceLastWheel > 100 && !isUserScrolling && Math.abs(smoothedVelocity) > 15) {
+        // Only apply momentum when user has clearly stopped scrolling AND velocity is moderate
+        // Higher threshold to prevent jitter during fast scrolling
+        if (timeSinceLastWheel > 120 && !isUserScrolling && Math.abs(smoothedVelocity) > 20 && Math.abs(smoothedVelocity) < 800) {
             // Very gentle deceleration (slower = smoother)
-            smoothedVelocity *= 0.97;
+            smoothedVelocity *= 0.98;
             
             // Calculate distance per frame with frame time correction
             const actualFrameTime = 16.67; // Target 60fps
             const distance = (smoothedVelocity * actualFrameTime) / 1000;
             
-            // Higher threshold to prevent micro-movements
-            if (Math.abs(distance) > 0.5) {
+            // Much higher threshold to prevent micro-movements and jitter
+            if (Math.abs(distance) > 1.0) {
                 const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
                 const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                 
-                let newPosition = currentPosition + distance;
+                // Round to nearest pixel to prevent sub-pixel rendering issues with text
+                let newPosition = Math.round(currentPosition + distance);
                 
                 // Clamp to bounds
                 if (newPosition <= 0) {
@@ -137,11 +139,19 @@ initializeTheme();
                     smoothedVelocity = 0;
                 }
                 
-                // Use scrollTo with auto (no smooth behavior to avoid conflicts)
-                window.scrollTo(0, newPosition);
+                // Only scroll if position actually changed (prevents unnecessary repaints)
+                if (Math.abs(newPosition - currentPosition) > 0.5) {
+                    // Use requestAnimationFrame for smoother updates
+                    requestAnimationFrame(() => {
+                        window.scrollTo(0, newPosition);
+                    });
+                }
             } else {
                 smoothedVelocity = 0;
             }
+        } else if (Math.abs(smoothedVelocity) >= 800) {
+            // If velocity is too high, don't apply momentum (prevents jitter)
+            smoothedVelocity = 0;
         }
         
         momentumAnimationId = requestAnimationFrame(continuousMomentum);
@@ -194,12 +204,17 @@ initializeTheme();
             if (velocityHistory.length >= 2) {
                 const recentVelocities = velocityHistory.slice(-3);
                 const avgVelocity = recentVelocities.reduce((sum, item) => sum + item.velocity, 0) / recentVelocities.length;
-                // Very conservative momentum (40% of average)
-                smoothedVelocity = avgVelocity * 0.4;
+                // Very conservative momentum (25% of average - much less aggressive)
+                smoothedVelocity = avgVelocity * 0.25;
+                
+                // Don't apply momentum if velocity is too high (prevents jitter)
+                if (Math.abs(smoothedVelocity) > 600) {
+                    smoothedVelocity = 0;
+                }
             } else {
                 smoothedVelocity = 0;
             }
-        }, 80); // Longer delay for stability
+        }, 100); // Even longer delay for stability
     }, { passive: true });
 
     // Initialize

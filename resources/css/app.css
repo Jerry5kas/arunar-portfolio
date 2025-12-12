@@ -201,16 +201,32 @@
         -webkit-transform: translateZ(0);
     }
 
-    /* Optimize text rendering during scroll */
-    body {
+    /* Prevent text jitter during scroll - critical fixes */
+    body, html {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
+        text-rendering: optimizeSpeed; /* Changed from optimizeLegibility for better performance */
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /* Fix text rendering during scroll - prevent sub-pixel jitter */
+    /* Only apply to main content areas, not all elements */
+    section, article, main {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     /* Prevent layout shifts during scroll */
     * {
         -webkit-font-smoothing: antialiased;
+    }
+
+    /* Disable momentum scrolling on touch devices to prevent conflicts */
+    @media (hover: none) and (pointer: coarse) {
+        html {
+            -webkit-overflow-scrolling: touch;
+        }
     }
 
     /* Custom scrollbar styling for tender smoothness */
