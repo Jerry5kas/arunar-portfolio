@@ -173,9 +173,70 @@
         @apply border-border;
     }
 
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 2rem;
+    }
+
     body {
         @apply bg-background text-foreground;
         font-family: var(--font-body);
+        /* Smooth scrolling with tender feel */
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        /* Momentum scrolling for natural feel */
+        overscroll-behavior-y: smooth;
+    }
+
+    /* Smooth scroll for all scrollable elements */
+    * {
+        scroll-behavior: smooth;
+    }
+
+    /* Optimize rendering for smooth scrolling - prevent jitter */
+    img, picture, video, canvas, svg {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    /* Optimize text rendering during scroll */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Prevent layout shifts during scroll */
+    * {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom scrollbar styling for tender smoothness */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 55, 0.3);
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(212, 175, 55, 0.5);
+    }
+
+    /* Firefox scrollbar */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
     }
 
     /* Heading styles with Playfair Display */
