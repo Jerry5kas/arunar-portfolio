@@ -231,7 +231,7 @@ export default function Welcome() {
                             {milestones.map((milestone, idx) => (
                                 <SwiperSlide key={milestone.year}>
                                     <div
-                                        className="relative mx-auto flex h-full w-full max-w-7xl items-center justify-center py-12"
+                                        className="relative mx-auto flex h-full w-full max-w-8xl items-center justify-center py-12"
                                         style={{
                                             backgroundImage: `url('${milestone.image}')`,
                                             backgroundSize: 'cover',
@@ -271,22 +271,10 @@ export default function Welcome() {
 
                                         {/* Desktop: Left Year/Title, Center Description, Right Vertical Nav Layout */}
                                         <div
-                                            className={`relative z-10 hidden w-full max-w-6xl mx-auto px-6 transition-all duration-500 ease-out sm:flex sm:items-center sm:justify-center gap-x-10 lg:px-10 ${
+                                            className={`relative z-10 hidden w-full max-w-7xl mx-auto transition-all duration-500 ease-out sm:flex sm:items-center sm:justify-center gap-x-10  ${
                                                 timelineTransitioning ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'
                                             }`}
                                         >
-                                            <div className="flex-shrink-0 w-72 flex flex-col gap-4">
-                                                <p className="text-5xl font-bold uppercase tracking-[0.22em] bg-gradient-to-r from-[#f7e7b3] via-[#d4af37] to-[#b8860b] bg-clip-text text-transparent">
-                                                    {milestone.year}
-                                                </p>
-                                                <h2 className="text-3xl font-semibold leading-tight text-white lg:text-4xl">{milestone.title}</h2>
-                                            </div>
-                                            <div className="flex-1 flex flex-col gap-6 max-w-2xl">
-                                                <p className="text-base leading-relaxed text-gray-300 lg:text-lg tracking-wide">
-                                                    {milestone.detail}
-                                                </p>
-                                            </div>
-                                            <div className="h-64 w-[2px] bg-[#d4af37]/70 rounded-full self-center" />
                                             <div className="flex-shrink-0 flex flex-col items-center justify-center gap-3">
                                                 <button className="swiper-button-prev-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/60 text-[#d4af37] transition hover:scale-105 hover:border-[#d4af37]/60 hover:bg-black/80">
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,6 +309,28 @@ export default function Welcome() {
                                                     </svg>
                                                 </button>
                                             </div>
+
+                                            <div className="h-64 w-[2px] bg-[#d4af37]/70 rounded-full self-center" />
+
+                                            
+                                            <div className="flex-1 flex flex-col items-start justify-center gap-6 max-w-xl">
+                                                {/* <p className="text-base leading-relaxed text-gray-300 lg:text-lg tracking-wide">
+                                                    {milestone.detail}
+                                                </p> */}
+                                                <p className="text-5xl font-bold uppercase tracking-[0.22em] bg-gradient-to-r from-[#f7e7b3] via-[#d4af37] to-[#b8860b] bg-clip-text text-transparent">
+                                                    {milestone.year}
+                                                </p>
+                                                <h2 className="text-3xl font-semibold leading-tight text-white lg:text-4xl">{milestone.title}</h2>
+                                            </div>
+
+                                            <div className="flex-shrink-0 w-96 flex flex-col gap-4">
+                                                <p className="text-base leading-relaxed text-gray-300 lg:text-md tracking-wide text-justify">
+                                                    {milestone.detail}
+                                                </p>
+                                                
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </SwiperSlide>
