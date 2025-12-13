@@ -11,7 +11,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
     useTheme(); // Apply theme colors and fonts globally
 
     return (
-        <div className="flex min-h-screen flex-col bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#0a0a0a] dark:text-[#EDEDEC]">
+        <div className="flex min-h-screen flex-col bg-[#F9F9F7] text-[#0E0E0E]">
             <SiteNavbar />
             <main className="flex-1 pt-0">{children}</main>
             <SiteFooter />

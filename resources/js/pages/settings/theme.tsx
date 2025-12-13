@@ -95,6 +95,10 @@ export default function ThemeSettings({ theme }: ThemeSettingsPageProps) {
                     if (logoInputRef.current) {
                         logoInputRef.current.value = '';
                     }
+                    // Reload shared data to update theme across all pages
+                    setTimeout(() => {
+                        router.reload();
+                    }, 100);
                 },
                 onError: (errors) => {
                     console.error('Validation errors:', errors);
@@ -108,6 +112,10 @@ export default function ThemeSettings({ theme }: ThemeSettingsPageProps) {
                 reset();
                     setLogoPreview('');
                 setEditingEnabled(false);
+                // Reload shared data to update theme across all pages
+                setTimeout(() => {
+                    router.reload();
+                }, 100);
             },
                 onError: (errors) => {
                     console.error('Validation errors:', errors);

@@ -2,6 +2,9 @@
 
 @import "tw-animate-css";
 
+/* AOS CSS */
+@import 'aos/dist/aos.css';
+
 /* Swiper CSS */
 @import 'swiper/css';
 @import 'swiper/css/navigation';
@@ -12,11 +15,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Navbar animations */
+/* Elite Animations - Slow, intentional motion */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
@@ -92,46 +95,49 @@
 }
 
 :root {
-    /* Dynamic theme colors - set by useTheme hook */
-    --theme-primary: #000000;
-    --theme-secondary: #FFFFFF;
-    --theme-accent: #D4AF37;
-    --theme-accent-secondary: #B8860B;
+    /* Elite White-Based Theme Colors */
+    --theme-primary: #0E0E0E; /* Soft Black for primary text */
+    --theme-secondary: #F9F9F7; /* Ivory White base */
+    --theme-accent: #C9A24D; /* Soft Gold */
+    --theme-accent-secondary: #A8842D; /* Deep Gold (hover/active) */
 
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
+    /* Elite Color System */
+    --background: #F9F9F7; /* Ivory White */
+    --foreground: #0E0E0E; /* Soft Black */
+    --card: #FFFFFF;
+    --card-foreground: #0E0E0E;
+    --popover: #FFFFFF;
+    --popover-foreground: #0E0E0E;
     --primary: var(--theme-primary);
     --primary-foreground: var(--theme-secondary);
     --secondary: var(--theme-secondary);
     --secondary-foreground: var(--theme-primary);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
+    --muted: #F6F5F2;
+    --muted-foreground: #7A7A7A;
     --accent: var(--theme-accent);
     --accent-foreground: var(--theme-primary);
     --destructive: oklch(0.577 0.245 27.325);
     --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
+    --border: #E5E5E0; /* Hairline Border */
+    --input: #E5E5E0;
+    --ring: #DDDAD4; /* Section Divider */
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar: #F9F9F7;
+    --sidebar-foreground: #0E0E0E;
     --sidebar-primary: var(--theme-primary);
     --sidebar-primary-foreground: var(--theme-secondary);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.87 0 0);
+    --sidebar-accent: #F6F5F2;
+    --sidebar-accent-foreground: #555555;
+    --sidebar-border: #E5E5E0;
+    --sidebar-ring: #DDDAD4;
 }
+
+/* Elite White Theme - No Dark Mode */
 
 .dark {
     --background: oklch(0.145 0 0);
@@ -229,10 +235,10 @@
         }
     }
 
-    /* Custom scrollbar styling for tender smoothness */
+    /* Elite scrollbar styling - minimal and refined */
     ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
     }
 
     ::-webkit-scrollbar-track {
@@ -240,29 +246,51 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background: rgba(212, 175, 55, 0.3);
+        background: rgba(201, 162, 77, 0.2); /* Soft Gold at low opacity */
         border-radius: 10px;
-        transition: background 0.3s ease;
+        transition: background 0.6s ease-out;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: rgba(212, 175, 55, 0.5);
+        background: rgba(201, 162, 77, 0.3);
     }
 
     /* Firefox scrollbar */
     * {
         scrollbar-width: thin;
-        scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
+        scrollbar-color: rgba(201, 162, 77, 0.2) transparent;
     }
 
-    /* Heading styles with Playfair Display */
+    /* Elite Editorial Typography */
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-heading);
-        font-weight: 700;
+        font-weight: 500;
+        letter-spacing: 0.02em;
     }
 
     h1 {
-        font-weight: 900;
+        font-weight: 700;
+        font-size: 2.5rem; /* Large sizes for editorial feel */
+    }
+
+    h2 {
+        font-weight: 600;
+    }
+
+    /* Body text with calm, executive reading experience */
+    body {
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    p, li {
+        line-height: 1.8;
+        font-weight: 400;
+    }
+    
+    /* Elite emphasis - minimal and refined */
+    strong, b {
+        font-weight: 500;
     }
 
     /* Accent font for special text */
@@ -321,4 +349,9 @@
     border-bottom-color: #d4af37;
     color: #d4af37;
     opacity: 1 !important;
+}
+
+/* Elite AOS Easing - Architectural / Luxury Smoothness */
+[data-aos] {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

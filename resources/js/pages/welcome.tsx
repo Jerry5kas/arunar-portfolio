@@ -3,6 +3,10 @@ import { Head } from '@inertiajs/react';
 import { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { motion } from 'framer-motion';
+import { fadeUp } from '@/Animations/motionPresets';
+import useAOSRefresh from '@/hooks/useAOSRefresh';
+import LazyImage from '@/components/LazyImage';
 
 const milestones = [
     {
@@ -51,6 +55,8 @@ const milestones = [
 ];
 
 export default function Welcome() {
+    useAOSRefresh();
+    
     const [activeTimelineIndex, setActiveTimelineIndex] = useState(0);
     const [timelineTransitioning, setTimelineTransitioning] = useState(false);
     const [timelineSwiper, setTimelineSwiper] = useState<any>(null);
@@ -87,14 +93,12 @@ export default function Welcome() {
     return (
         <SiteLayout>
             <Head title="Home" />
-            <div className="space-y-0 bg-gradient-to-b from-[#fdf8f1] via-[#fffaf5] to-[#f4eee3] text-[#1b1a16] dark:from-[#090807] dark:via-[#0c0b09] dark:to-[#0f0d0b]">
-                {/* Hero section */}
-                <section className="relative flex min-h-screen items-center justify-center bg-black text-white">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/80 to-black/90" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.12),transparent_70%)]" />
+            <div className="space-y-0 bg-[#F9F9F7] text-[#0E0E0E]">
+                {/* Hero section - Elite White */}
+                <section className="relative flex min-h-screen items-center justify-center bg-[#F9F9F7] text-[#0E0E0E]">
 
                     <div className="relative z-10 w-full px-0 py-8 sm:px-0" style={{ pointerEvents: 'auto' }}>
-                        <div className="w-full h-screen max-h-[900px] overflow-hidden shadow-2xl shadow-black/50 backdrop-blur-sm" style={{ pointerEvents: 'auto' }}>
+                        <div className="w-full h-screen max-h-[900px] overflow-hidden" style={{ pointerEvents: 'auto' }}>
                             <video
                                 ref={videoRef}
                                 src="/video/hero.mp4"
@@ -113,10 +117,8 @@ export default function Welcome() {
                     </div>
                 </section>
 
-                {/* About with quote, signature, left-side portrait */}
-                <section className="group relative min-h-screen overflow-hidden bg-black transition-all duration-700">
-                    {/* Subtle background glow on hover */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.12),transparent_70%)] transition-all duration-700 ease-out group-hover:bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.18),transparent_70%)]" />
+                {/* About with quote, signature, left-side portrait - Elite White */}
+                <section className="group relative min-h-screen overflow-hidden bg-[#F9F9F7] transition-all duration-1000 ease-out">
                     {/* Animated scrolling text - Left side (Desktop only) */}
                     <div className="pointer-events-none absolute left-0 top-0 z-0 hidden h-full w-[75%] overflow-hidden px-20 md:block">
                         <div
@@ -128,25 +130,25 @@ export default function Welcome() {
                             }}
                         >
                             <div className="flex flex-col gap-10">
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     I am an entrepreneur driven by a relentless passion for innovation, growth, and excellence. My journey began in 2010 with the establishment of The Stage 365, setting the foundation for a multi-industry legacy. Over the years, I have expanded my footprint across real estate, construction, interior design, and event management, building brands that redefine industry standards.
                                 </p>
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     From founding Area24 as a premium real estate solutions provider to evolving it into a fully integrated development and consulting firm, my ventures have consistently focused on quality, sustainability, and customer-centric solutions. The launch of Atha Construction Pvt. Ltd. and Nesthetix Designs LLP further strengthened my commitment to engineering excellence and luxury interior design.
                                 </p>
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     Through strategic expansions and corporate structuring, my businesses continue to innovate, transform urban landscapes, and create lasting impact. My entrepreneurial journey is a testament to resilience, vision, and the pursuit of excellence.
                                 </p>
                             </div>
                             {/* Duplicate for seamless loop */}
                             <div className="flex flex-col gap-10">
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     I am an entrepreneur driven by a relentless passion for innovation, growth, and excellence. My journey began in 2010 with the establishment of The Stage 365, setting the foundation for a multi-industry legacy. Over the years, I have expanded my footprint across real estate, construction, interior design, and event management, building brands that redefine industry standards.
                                 </p>
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     From founding Area24 as a premium real estate solutions provider to evolving it into a fully integrated development and consulting firm, my ventures have consistently focused on quality, sustainability, and customer-centric solutions. The launch of Atha Construction Pvt. Ltd. and Nesthetix Designs LLP further strengthened my commitment to engineering excellence and luxury interior design.
                                 </p>
-                                <p className="text-[120px] font-bold leading-relaxed text-[#d4af37]/15">
+                                <p className="text-[120px] font-bold leading-relaxed text-[#C9A24D]/8">
                                     Through strategic expansions and corporate structuring, my businesses continue to innovate, transform urban landscapes, and create lasting impact. My entrepreneurial journey is a testament to resilience, vision, and the pursuit of excellence.
                                 </p>
                             </div>
@@ -161,51 +163,90 @@ export default function Welcome() {
                         </div>
                     </div> */}
 
-                    <div className="relative z-10 grid min-h-screen items-center gap-10 px-6 sm:px-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-14">
-                        <div className="relative mx-auto -mb-24 flex w-full max-w-2xl items-end justify-center sm:-mb-28 lg:-mb-32">
-                            <div className="relative transition-all duration-700 ease-out group-hover:scale-105">
-                                {/* Glow effect on hover */}
-                                <div className="absolute inset-0 -z-10 rounded-full bg-[#d4af37]/0 blur-3xl transition-all duration-700 ease-out group-hover:bg-[#d4af37]/20 group-hover:blur-[60px]" />
-                                <img
+                    <div className="relative z-10 grid min-h-screen gap-10 px-6 sm:px-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-14">
+                        <div 
+                            className="relative mx-auto flex w-full max-w-xl items-end justify-end self-end group"
+                            data-aos="fade"
+                            data-aos-duration="1200"
+                        >
+                            <div className="relative transition-transform duration-700 ease-out w-full group-hover:scale-105">
+                                <LazyImage
                                     src="/images/avatar.png"
                                     alt="Arunar portrait"
-                                    className="aspect-[3/4] w-full max-h-[95vh] object-contain transition-all duration-700 ease-out"
-                                    style={{ clipPath: 'ellipse(78% 65% at 50% 42%)' }}
+                                    className="w-full max-h-[60vh] sm:max-h-[65vh] lg:max-h-[95vh] object-contain transition-opacity duration-1000 ease-out"
                                 />
+                                <div className="absolute bottom-0 left-0 right-0 h-1/5 bg-gradient-to-t from-[#F9F9F7]/85 to-transparent pointer-events-none" />
                             </div>
                         </div>
-                        <div className="flex flex-col justify-center space-y-6">
-                            <blockquote className="relative mx-auto w-full max-w-2xl overflow-hidden p-10 text-lg leading-relaxed text-white/90 transition-all duration-700 ease-out group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                                <span className="absolute left-6 top-6 text-5xl text-[#d4af37] transition-all duration-700 ease-out group-hover:text-[#d4af37] group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">"</span>
-                                <p className="pl-8 leading-relaxed tracking-wide uppercase transition-all duration-700 ease-out" style={{ wordSpacing: '0.2em' }}>
+                        <div className="flex flex-col justify-center items-center space-y-8 self-center">
+                            <motion.blockquote 
+                                className="relative mx-auto w-full max-w-2xl overflow-hidden p-12 text-xl leading-relaxed text-[#0E0E0E] font-accent font-light"
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="visible"
+                            >
+                                <span className="absolute left-6 top-6 text-5xl text-[#C9A24D]">"</span>
+                                <p className="pl-8 leading-relaxed tracking-[0.02em] uppercase" style={{ wordSpacing: '0.2em' }}>
                                     YOU DON'T JUST BUILD COMPANIES;
                                     <br />
                                     YOU BUILD LEGACIES THAT STAND
                                     <br />
                                     THE TEST OF TIME.
                                 </p>
-                                <div className="mt-8 flex items-center gap-6 pl-8">
-                                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent transition-all duration-700 ease-out group-hover:via-[#d4af37] group-hover:shadow-[0_0_10px_rgba(212,175,55,0.4)]" />
-                                    <div className="text-right">
-                                        <p className="text-base font-semibold uppercase tracking-[0.18em] text-[#d4af37] transition-all duration-700 ease-out group-hover:text-[#d4af37] group-hover:drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">ARUN KUMAR AR</p>
+                                <div className="mt-10 flex flex-col items-center gap-4 pl-8">
+                                    {/* Decorative divider with ornament */}
+                                    <div className="flex items-center gap-4 w-full">
+                                        <div className="h-px flex-1 bg-[#C9A24D]"></div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="h-1.5 w-1.5 rounded-full bg-[#C9A24D]"></div>
+                                            <div className="h-px w-8 bg-[#C9A24D]"></div>
+                                            <div className="h-1.5 w-1.5 rounded-full bg-[#C9A24D]"></div>
+                                        </div>
+                                        <div className="h-px flex-1 bg-[#C9A24D]"></div>
+                                    </div>
+                                    
+                                    {/* Name with decorative elements */}
+                                    <div className="text-center space-y-2">
+                                        <div className="flex items-center justify-center gap-3">
+                                            <div className="h-px w-12 bg-[#E5E5E0]"></div>
+                                        <p className="text-base font-heading font-medium uppercase tracking-[0.18em] text-[#C9A24D]">ARUN KUMAR AR</p>
+                                            <div className="h-px w-12 bg-[#E5E5E0]"></div>
+                                        </div>
+                                        {/* Subtle decorative accent */}
+                                        <div className="flex items-center justify-center gap-2 pt-1">
+                                            <div className="h-0.5 w-6 bg-[#C9A24D]/30"></div>
+                                            <div className="h-0.5 w-1 bg-[#C9A24D]"></div>
+                                            <div className="h-0.5 w-6 bg-[#C9A24D]/30"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </blockquote>
+                            </motion.blockquote>
                         </div>
                     </div>
                 </section>
 
-                {/* Timeline */}
-                <div className="w-full py-16 sm:py-24 bg-black space-y-8">
-                    <div className="mx-auto max-w-7xl px-6 text-center space-y-4">
-                        <h2 className="text-4xl font-bold uppercase tracking-[0.22em] bg-gradient-to-r from-[#f7e7b3] via-[#d4af37] to-[#b8860b] bg-clip-text text-transparent">
+                {/* Timeline - Elite White */}
+                <div className="w-full pt-12 pb-24 sm:pt-24 sm:pb-32 bg-[#FFFFFF] space-y-12">
+                    <div 
+                        className="mx-auto max-w-7xl px-6 text-center space-y-6"
+                        data-aos="fade-up"
+                    >
+                        <h2 className="text-5xl font-heading font-medium uppercase tracking-[0.02em] text-[#0E0E0E]">
                             Our Journey
                         </h2>
-                        <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                        <p 
+                            className="text-lg text-[#555555] max-w-2xl mx-auto font-body"
+                            data-aos="fade-up"
+                            data-aos-delay="100"
+                        >
                             A timeline of milestones that shaped our vision, from foundation to innovation across real estate, construction, interiors, and media.
                         </p>
                     </div>
-                    <section className="relative h-[45rem] overflow-hidden bg-black text-white sm:h-[40rem]">
+                    <section 
+                        className="relative h-[45rem] overflow-hidden bg-[#F9F9F7] text-[#0E0E0E] sm:h-[40rem]"
+                        data-aos="fade"
+                        data-aos-duration="1200"
+                    >
                         {/* Background */}
                         <Swiper
                             modules={[Navigation, Pagination]}
@@ -238,8 +279,8 @@ export default function Welcome() {
                                             backgroundPosition: 'center',
                                         }}
                                     >
-                                        {/* Subtle dark overlay without blur to improve text contrast */}
-                                        <div className="absolute inset-0 bg-black/70" />
+                                        {/* Subtle overlay */}
+                                        <div className="absolute inset-0 bg-[#F9F9F7]/85" />
                                         
                                         {/* Mobile: Simple Stacked Layout */}
                                         <div
@@ -247,13 +288,13 @@ export default function Welcome() {
                                                 timelineTransitioning ? 'opacity-0 translate-y-2 pointer-events-none' : 'opacity-100 translate-y-0'
                                             }`}
                                         >
-                                            <p className="text-3xl font-bold uppercase tracking-[0.22em] text-[#d4af37]">{milestone.year}</p>
-                                            <h2 className="text-xl font-semibold leading-tight text-white">{milestone.title}</h2>
-                                            <p className="text-sm leading-relaxed text-gray-300">
+                                            <p className="text-3xl font-heading font-medium uppercase tracking-[0.02em] text-[#C9A24D]">{milestone.year}</p>
+                                            <h2 className="text-xl font-heading font-medium leading-tight text-[#0E0E0E]">{milestone.title}</h2>
+                                            <p className="text-sm leading-relaxed text-[#555555] font-body">
                                                 {milestone.detail}
                                             </p>
                                             <div className="mt-4 flex items-center gap-4">
-                                                <button className="swiper-button-prev-timeline flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/50 text-[#d4af37] transition hover:bg-black/70">
+                                                <button className="swiper-button-prev-timeline flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E5E0] bg-white text-[#C9A24D] transition-all duration-700 ease-out hover:border-[#C9A24D]">
                                                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                                     </svg>
@@ -261,7 +302,7 @@ export default function Welcome() {
                                                 <span className="text-xs text-white/60">
                                                     {activeTimelineIndex + 1} / {milestones.length}
                                                 </span>
-                                                <button className="swiper-button-next-timeline flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/50 text-[#d4af37] transition hover:bg-black/70">
+                                                <button className="swiper-button-next-timeline flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E5E0] bg-white text-[#C9A24D] transition-all duration-700 ease-out hover:border-[#C9A24D]">
                                                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
@@ -276,7 +317,7 @@ export default function Welcome() {
                                             }`}
                                         >
                                             <div className="flex-shrink-0 flex flex-col items-center justify-center gap-3">
-                                                <button className="swiper-button-prev-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/60 text-[#d4af37] transition hover:scale-105 hover:border-[#d4af37]/60 hover:bg-black/80">
+                                                <button className="swiper-button-prev-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E5E0] bg-white text-[#C9A24D] transition-all duration-700 ease-out hover:border-[#C9A24D]">
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                                     </svg>
@@ -291,40 +332,40 @@ export default function Welcome() {
                                                                 timelineSwiper.slideTo(yearIdx, 800);
                                                             }
                                                         }}
-                                                        className={`relative text-xs transition-opacity hover:opacity-80 ${
+                                                        className={`relative transition-opacity duration-700 hover:opacity-80 ${
                                                             yearIdx === activeTimelineIndex
-                                                                ? 'text-[#d4af37] tracking-[0.22em] font-bold pb-2'
-                                                                : 'text-white/70'
+                                                                ? 'text-[#C9A24D] text-base sm:text-lg font-heading font-medium tracking-[0.15em] pb-2'
+                                                                : 'text-xs text-[#7A7A7A]'
                                                         }`}
                                                     >
                                                         {yearItem.year}
                                                         {yearIdx === activeTimelineIndex && (
-                                                            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d4af37] rounded-full" />
+                                                            <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C9A24D] rounded-full" />
                                                         )}
                                                     </button>
                                                 ))}
-                                                <button className="swiper-button-next-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/60 text-[#d4af37] transition hover:scale-105 hover:border-[#d4af37]/60 hover:bg-black/80">
+                                                <button className="swiper-button-next-timeline z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#E5E5E0] bg-white text-[#C9A24D] transition-all duration-700 ease-out hover:border-[#C9A24D]">
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
                                                 </button>
                                             </div>
 
-                                            <div className="h-64 w-[2px] bg-[#d4af37]/70 rounded-full self-center" />
+                                            <div className="h-64 w-[2px] bg-[#C9A24D] rounded-full self-center" />
 
                                             
                                             <div className="flex-1 flex flex-col items-start justify-center gap-6 max-w-xl">
                                                 {/* <p className="text-base leading-relaxed text-gray-300 lg:text-lg tracking-wide">
                                                     {milestone.detail}
                                                 </p> */}
-                                                <p className="text-5xl font-bold uppercase tracking-[0.22em] bg-gradient-to-r from-[#f7e7b3] via-[#d4af37] to-[#b8860b] bg-clip-text text-transparent">
+                                                <p className="text-5xl font-heading font-medium uppercase tracking-[0.02em] text-[#C9A24D]">
                                                     {milestone.year}
                                                 </p>
-                                                <h2 className="text-3xl font-semibold leading-tight text-white lg:text-4xl">{milestone.title}</h2>
+                                                <h2 className="text-3xl font-heading font-medium leading-tight text-[#0E0E0E] lg:text-4xl">{milestone.title}</h2>
                                             </div>
 
                                             <div className="flex-shrink-0 w-96 flex flex-col gap-4">
-                                                <p className="text-base leading-relaxed text-gray-300 lg:text-md tracking-wide text-justify">
+                                                <p className="text-base leading-relaxed text-[#555555] lg:text-md tracking-wide text-justify font-body">
                                                     {milestone.detail}
                                                 </p>
                                                 
