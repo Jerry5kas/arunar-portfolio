@@ -24,6 +24,8 @@ import {
     Palette,
     User as UserIcon,
     FileText,
+    Image,
+    Video,
 } from 'lucide-react';
 import { resolveUrl } from '@/lib/utils';
 import AppLogo from './app-logo';
@@ -38,6 +40,16 @@ const mainNavItems: NavItem[] = [
         title: 'Blogs',
         href: '/admin/blogs',
         icon: FileText,
+    },
+    {
+        title: 'Gallery',
+        href: '/admin/gallery',
+        icon: Image,
+    },
+    {
+        title: 'Videos',
+        href: '/admin/videos',
+        icon: Video,
     },
 ];
 

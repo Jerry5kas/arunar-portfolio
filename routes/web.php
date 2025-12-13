@@ -22,9 +22,9 @@ Route::get('/accolades', function () {
     return Inertia::render('accolades');
 })->name('accolades');
 
-Route::get('/media', function () {
-    return Inertia::render('media');
-})->name('media');
+use App\Http\Controllers\MediaController;
+
+Route::get('/media', [MediaController::class, 'index'])->name('media');
 
 use App\Http\Controllers\BlogController;
 

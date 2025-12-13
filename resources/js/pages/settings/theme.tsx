@@ -102,17 +102,17 @@ export default function ThemeSettings({ theme }: ThemeSettingsPageProps) {
             });
         } else {
             // No file, use regular put method
-            put('/settings/theme', {
-                preserveScroll: true,
-                onSuccess: () => {
-                    reset();
+        put('/settings/theme', {
+            preserveScroll: true,
+            onSuccess: () => {
+                reset();
                     setLogoPreview('');
-                    setEditingEnabled(false);
-                },
+                setEditingEnabled(false);
+            },
                 onError: (errors) => {
                     console.error('Validation errors:', errors);
                 },
-            });
+        });
         }
     };
 

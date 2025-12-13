@@ -118,7 +118,7 @@ class ThemeSettingsController extends Controller
             );
             
             if ($logoPath) {
-                ThemeSetting::set('logo_url', $logoPath);
+            ThemeSetting::set('logo_url', $logoPath);
                 \Log::info('Logo uploaded successfully', ['path' => $logoPath]);
             } else {
                 \Log::warning('Logo upload failed');

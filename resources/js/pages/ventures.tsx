@@ -6,31 +6,31 @@ const ventures = [
         name: 'Area24 Developers Pvt. Ltd.',
         summary:
             'A leading real estate development firm specializing in premium residential and commercial projects. Focused on innovation, sustainability, and delivering world-class living spaces.',
-        logo: '/images/logo/area24one.jpeg',
+        logo: '/images/logo/Area 24 one logo-White.png',
     },
     {
         name: 'Atha Construction Pvt. Ltd.',
         summary:
             'A construction company committed to engineering excellence, structural innovation, and high-quality craftsmanship. Creating durable, sustainable, and aesthetically superior developments.',
-        logo: '/images/logo/athaconstructions.jpeg',
+        logo: '/images/logo/Atha Logo - High Quality-White (1).png',
     },
     {
         name: 'Nesthetix Designs LLP',
         summary:
             'A luxury interior design firm transforming spaces with bespoke designs, modern aesthetics, and functional elegance. Specializing in high-end residential and commercial interiors.',
-        logo: '/images/logo/nesthetix.jpeg',
+        logo: '/images/logo/Nesthetix Logo-White.png',
     },
     {
         name: 'The Stage 365',
         summary:
             'A premier event production and brand activation company delivering immersive experiences. Recognized for its expertise in corporate gatherings, social celebrations, and digital marketing.',
-        logo: '/images/logo/stage365.jpeg',
+        logo: '/images/logo/STAGE 365.png',
     },
     {
         name: 'Area24 Realty',
         summary:
             'A trusted real estate consultancy offering end-to-end property solutions, including sales, investment advisory, and market insights. Streamlining transactions with expertise and transparency.',
-        logo: '/images/logo/area24Realty.jpeg',
+        logo: '/images/logo/Area 24 Realty (1).png',
     },
 ];
 

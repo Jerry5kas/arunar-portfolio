@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\GalleryImageController;
 use App\Http\Controllers\Admin\ThemeSettingsController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\TwoFactorAuthenticationController;
@@ -51,4 +53,38 @@ Route::middleware('auth')->group(function () {
     // Allow POST for updates (for file uploads with method spoofing)
     Route::post('admin/blogs/{blog}', [BlogController::class, 'update'])
         ->name('admin.blogs.update.post');
+
+    // Admin gallery management
+    Route::resource('admin/gallery', GalleryImageController::class)->parameters([
+        'gallery' => 'id',
+    ])->names([
+        'index' => 'admin.gallery.index',
+        'create' => 'admin.gallery.create',
+        'store' => 'admin.gallery.store',
+        'show' => 'admin.gallery.show',
+        'edit' => 'admin.gallery.edit',
+        'update' => 'admin.gallery.update',
+        'destroy' => 'admin.gallery.destroy',
+    ]);
+    
+    // Allow POST for updates (for file uploads with method spoofing)
+    Route::post('admin/gallery/{id}', [GalleryImageController::class, 'update'])
+        ->name('admin.gallery.update.post');
+
+    // Admin video management
+    Route::resource('admin/videos', VideoController::class)->parameters([
+        'videos' => 'id',
+    ])->names([
+        'index' => 'admin.videos.index',
+        'create' => 'admin.videos.create',
+        'store' => 'admin.videos.store',
+        'show' => 'admin.videos.show',
+        'edit' => 'admin.videos.edit',
+        'update' => 'admin.videos.update',
+        'destroy' => 'admin.videos.destroy',
+    ]);
+    
+    // Allow POST for updates (for file uploads with method spoofing)
+    Route::post('admin/videos/{id}', [VideoController::class, 'update'])
+        ->name('admin.videos.update.post');
 });
