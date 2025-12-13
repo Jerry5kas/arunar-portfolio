@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\FileUploadService;
 use App\Models\ThemeSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class ThemeSettingsController extends Controller
                 'fontHeadingUrl' => $settings['font_heading_url'] ?? 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap',
                 'fontBodyUrl' => $settings['font_body_url'] ?? 'https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display:wght@300;400;500;700&display=swap',
                 'fontAccentUrl' => $settings['font_accent_url'] ?? 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap',
-                'logoUrl' => $settings['logo_url'] ?? '',
+                'logoUrl' => FileUploadService::getUrl($settings['logo_url'] ?? '') ?? '',
             ],
         ]);
     }
@@ -103,15 +104,25 @@ class ThemeSettingsController extends Controller
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
-            // Delete old logo if exists (only if it's a stored file, not external URL)
+            \Log::info('Processing logo upload');
+            
             $oldLogo = ThemeSetting::get('logo_url');
-            if ($oldLogo && !filter_var($oldLogo, FILTER_VALIDATE_URL) && Storage::disk('public')->exists($oldLogo)) {
-                Storage::disk('public')->delete($oldLogo);
+            // Only delete if it's a stored file (not external URL)
+            $oldPath = ($oldLogo && !filter_var($oldLogo, FILTER_VALIDATE_URL)) ? $oldLogo : null;
+            
+            $logoPath = \App\Services\FileUploadService::upload(
+                $request->file('logo'),
+                'logos',
+                null, // No subdirectory
+                $oldPath
+            );
+            
+            if ($logoPath) {
+                ThemeSetting::set('logo_url', $logoPath);
+                \Log::info('Logo uploaded successfully', ['path' => $logoPath]);
+            } else {
+                \Log::warning('Logo upload failed');
             }
-
-            // Store new logo
-            $logoPath = $request->file('logo')->store('logos', 'public');
-            ThemeSetting::set('logo_url', $logoPath);
         } elseif (isset($validated['logoUrl'])) {
             $logoUrlValue = trim($validated['logoUrl']);
             if (empty($logoUrlValue) || filter_var($logoUrlValue, FILTER_VALIDATE_URL)) {

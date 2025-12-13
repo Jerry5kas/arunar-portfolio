@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // Seed theme settings first
         $this->call([
             ThemeSettingsSeeder::class,
+            BlogSeeder::class,
         ]);
 
         // Create admin user

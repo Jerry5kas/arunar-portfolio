@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, router } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -64,15 +64,56 @@ export default function ThemeSettings({ theme }: ThemeSettingsPageProps) {
             return;
         }
         
-        // Inertia's useForm automatically sends the data object
-        // The data is already properly initialized with defaults
-        put('/settings/theme', {
-            preserveScroll: true,
-            onSuccess: () => {
-                reset();
-                setEditingEnabled(false);
-            },
-        });
+        // Check if we have a file to upload
+        const hasFile = data.logo instanceof File;
+        
+        if (hasFile) {
+            // When file is present, use FormData manually
+            const formData = new FormData();
+            
+            // Add all form data
+            Object.keys(data).forEach((key) => {
+                const value = data[key as keyof typeof data];
+                if (value !== null && value !== undefined) {
+                    if (value instanceof File) {
+                        formData.append(key, value);
+                    } else {
+                        formData.append(key, String(value));
+                    }
+                }
+            });
+            
+            // Use router.post with method spoofing for file uploads
+            formData.append('_method', 'PUT');
+            router.post('/settings/theme', formData, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    reset();
+                    setLogoPreview('');
+                    setEditingEnabled(false);
+                    // Reset file input
+                    if (logoInputRef.current) {
+                        logoInputRef.current.value = '';
+                    }
+                },
+                onError: (errors) => {
+                    console.error('Validation errors:', errors);
+                },
+            });
+        } else {
+            // No file, use regular put method
+            put('/settings/theme', {
+                preserveScroll: true,
+                onSuccess: () => {
+                    reset();
+                    setLogoPreview('');
+                    setEditingEnabled(false);
+                },
+                onError: (errors) => {
+                    console.error('Validation errors:', errors);
+                },
+            });
+        }
     };
 
     return (

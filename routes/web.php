@@ -26,9 +26,10 @@ Route::get('/media', function () {
     return Inertia::render('media');
 })->name('media');
 
-Route::get('/blog', function () {
-    return Inertia::render('blog');
-})->name('blog');
+use App\Http\Controllers\BlogController;
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

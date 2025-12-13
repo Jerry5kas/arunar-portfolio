@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\ThemeSetting;
+use App\Services\FileUploadService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -63,11 +64,7 @@ class HandleInertiaRequests extends Middleware
                 'fontHeadingUrl' => $themeSettings['font_heading_url'] ?? 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap',
                 'fontBodyUrl' => $themeSettings['font_body_url'] ?? 'https://fonts.googleapis.com/css2?family=Neue+Haas+Grotesk+Display:wght@300;400;500;700&display=swap',
                 'fontAccentUrl' => $themeSettings['font_accent_url'] ?? 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap',
-                'logoUrl' => !empty($themeSettings['logo_url']) 
-                    ? (filter_var($themeSettings['logo_url'], FILTER_VALIDATE_URL) 
-                        ? $themeSettings['logo_url'] 
-                        : Storage::url($themeSettings['logo_url']))
-                    : '',
+                'logoUrl' => \App\Services\FileUploadService::getUrl($themeSettings['logo_url'] ?? '') ?? '',
             ],
         ];
     }

@@ -287,8 +287,8 @@ export default function About() {
                                             rows={2}
                                             className="w-full px-4 py-3 bg-black/30 border border-[#d4af37]/20 rounded-lg text-white placeholder-white/30 focus:outline-none focus:border-[#d4af37]/50 focus:ring-1 focus:ring-[#d4af37]/30 transition-all duration-300 resize-none text-sm sm:text-base flex-1"
                                             placeholder="Your message..."
-                                        />
-                                    </div>
+                        />
+                    </div>
 
                                     {/* Submit Button */}
                                     <div className="pt-2">
@@ -300,7 +300,7 @@ export default function About() {
                                         </button>
                                     </div>
                                 </form>
-                            </div>
+                        </div>
 
                             {/* Contact Information */}
                             <div className="space-y-6 sm:space-y-8 flex flex-col text-center">
@@ -310,8 +310,8 @@ export default function About() {
                                     <p className="text-sm sm:text-base text-white/80 font-light leading-relaxed">
                                         No.81/37, Ground Floor, The Hulkul,<br />
                                         Lavelle Road, Bengaluru - 560001
-                                    </p>
-                                </div>
+                            </p>
+                        </div>
 
                                 {/* Email */}
                                 <div className="group">

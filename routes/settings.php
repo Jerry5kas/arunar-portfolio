@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ThemeSettingsController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController;
@@ -32,4 +33,22 @@ Route::middleware('auth')->group(function () {
         ->name('theme.index');
     Route::put('settings/theme', [ThemeSettingsController::class, 'update'])
         ->name('theme.update');
+    // Allow POST for updates (for file uploads with method spoofing)
+    Route::post('settings/theme', [ThemeSettingsController::class, 'update'])
+        ->name('theme.update.post');
+
+    // Admin blog management
+    Route::resource('admin/blogs', BlogController::class)->names([
+        'index' => 'admin.blogs.index',
+        'create' => 'admin.blogs.create',
+        'store' => 'admin.blogs.store',
+        'show' => 'admin.blogs.show',
+        'edit' => 'admin.blogs.edit',
+        'update' => 'admin.blogs.update',
+        'destroy' => 'admin.blogs.destroy',
+    ]);
+    
+    // Allow POST for updates (for file uploads with method spoofing)
+    Route::post('admin/blogs/{blog}', [BlogController::class, 'update'])
+        ->name('admin.blogs.update.post');
 });

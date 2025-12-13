@@ -23,6 +23,7 @@ import {
     LayoutGrid,
     Palette,
     User as UserIcon,
+    FileText,
 } from 'lucide-react';
 import { resolveUrl } from '@/lib/utils';
 import AppLogo from './app-logo';
@@ -32,6 +33,11 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Blogs',
+        href: '/admin/blogs',
+        icon: FileText,
     },
 ];
 
