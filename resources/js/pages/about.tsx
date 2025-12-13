@@ -13,31 +13,49 @@ export default function About() {
             <Head title="About" />
             {/* Hero section - Elite White */}
             <section className="w-full relative min-h-screen py-8 sm:py-12 md:py-16 lg:py-12 pt-24 lg:min-h-screen overflow-hidden bg-[#F9F9F7] text-[#0E0E0E] flex items-center justify-center">
+                {/* Subtle background texture/pattern */}
+                <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{
+                    backgroundImage: `radial-gradient(circle at 2px 2px, #0E0E0E 1px, transparent 0)`,
+                    backgroundSize: '40px 40px'
+                }}></div>
                 
                 {/* Container - mobile responsive layout */}
-                <div className="relative z-10 container mx-auto px-2 grid grid-cols-1 lg:grid-cols-2 items-start justify-center w-full">
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 grid grid-cols-1 lg:grid-cols-2 items-start justify-center w-full gap-8 sm:gap-12 lg:gap-16 xl:gap-20">
                     {/* Left Column: Image + Story Content */}
-                    <div className="flex flex-col gap-2 order-2 lg:order-1 sm:pt-20 pt-0">
+                    <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 order-2 lg:order-1 sm:pt-20 pt-0">
                         {/* Image - Elite Minimal */}
                         <div 
-                            className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto relative"
+                            className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto relative group"
                             data-aos="fade"
                             data-aos-duration="1200"
                         >
-                            <div className="relative">
+                            {/* Decorative frame elements */}
+                            <div className="absolute -top-4 -left-4 w-16 h-16 border-t-2 border-l-2 border-[#C9A24D]/20 hidden lg:block"></div>
+                            <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b-2 border-r-2 border-[#C9A24D]/20 hidden lg:block"></div>
+                            
+                            <div className="relative overflow-hidden rounded-sm">
+                                {/* Subtle shadow/glow effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24D]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out -z-10"></div>
+                                
                                 <LazyImage
                                     src="/images/about.png"
                                     alt="Arunar seated portrait"
-                                    className="w-full sm:h-[35rem] h-[20rem] object-contain mx-auto transition-opacity duration-1000 ease-out"
+                                    className="w-full sm:h-[35rem] h-[20rem] object-contain mx-auto transition-all duration-700 ease-out group-hover:scale-[1.02]"
                                 />
                             </div>
+                            
+                            {/* Elegant border on hover */}
+                            <div className="absolute inset-0 border border-[#E5E5E0] rounded-sm opacity-0 group-hover:opacity-100 group-hover:border-[#C9A24D]/30 transition-all duration-700 ease-out pointer-events-none"></div>
                         </div>
 
                         {/* Enhanced Story content with better structure */}
-                        <div className="w-full max-w-3xl mx-auto">
+                        <div className="w-full max-w-3xl mx-auto relative">
+                            {/* Decorative accent line */}
+                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-px bg-gradient-to-r from-transparent via-[#C9A24D]/40 to-transparent hidden sm:block"></div>
+                            
                             {/* Story text - Elite Typography */}
                             <div 
-                                className="space-y-5 sm:space-y-6 md:space-y-7 text-[#555555] text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed md:leading-relaxed font-body text-center"
+                                className="space-y-6 sm:space-y-7 md:space-y-8 text-[#555555] text-sm sm:text-base md:text-lg leading-[1.85] sm:leading-[1.9] md:leading-[1.95] font-body text-center px-2 sm:px-4"
                                 data-aos="fade-up"
                                 data-aos-delay="100"
                             >
@@ -52,15 +70,23 @@ export default function About() {
                                 </p>
                             </div>
 
-                            {/* Elite Divider */}
+                            {/* Elite Divider - Enhanced */}
                             <div 
-                                className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 mt-8 sm:mt-10 md:mt-12 py-4"
+                                className="flex items-center justify-center gap-4 sm:gap-5 md:gap-6 mt-10 sm:mt-12 md:mt-16 py-6"
                                 data-aos="fade-up"
                                 data-aos-delay="150"
                             >
-                                <div className="h-px w-12 sm:w-16 md:w-20 bg-[#E5E5E0]" />
-                                <div className="h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-[#C9A24D]" />
-                                <div className="h-px w-12 sm:w-16 md:w-20 bg-[#E5E5E0]" />
+                                <div className="h-px flex-1 max-w-16 sm:max-w-20 md:max-w-24 bg-gradient-to-r from-transparent to-[#E5E5E0]"></div>
+                                <div className="relative">
+                                    <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C9A24D]"></div>
+                                    <div className="absolute inset-0 h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C9A24D]/20 animate-ping"></div>
+                                </div>
+                                <div className="h-px w-px bg-[#C9A24D]/30"></div>
+                                <div className="relative">
+                                    <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C9A24D]"></div>
+                                    <div className="absolute inset-0 h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C9A24D]/20 animate-ping" style={{animationDelay: '0.5s'}}></div>
+                                </div>
+                                <div className="h-px flex-1 max-w-16 sm:max-w-20 md:max-w-24 bg-gradient-to-l from-transparent to-[#E5E5E0]"></div>
                             </div>
 
                             {/* Core Philosophy Section */}
@@ -69,70 +95,95 @@ export default function About() {
                     </div>
 
                     {/* Right Column: Label, Quote, Signatures */}
-                    <div className="flex w-full flex-col items-center gap-4 sm:gap-6 md:gap-8 text-center order-1 lg:order-2 pt-0 sm:pt-60">
+                    <div className="flex w-full flex-col items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 text-center order-1 lg:order-2 pt-0 sm:pt-60 relative">
+                        {/* Subtle decorative corner accent - top right */}
+                        <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-[#C9A24D]/10 hidden lg:block"></div>
                         
                         {/* Enhanced Label with subtle animation */}
                         <motion.div 
-                            className="group"
+                            className="group relative"
                             variants={fadeUp}
                             initial="hidden"
                             animate="visible"
                         >
-                            <p className="text-xs sm:text-sm uppercase tracking-[0.28em] text-[#7A7A7A] font-medium">
+                            <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 w-6 h-px bg-[#C9A24D]/30 hidden lg:block"></div>
+                            <p className="text-xs sm:text-sm uppercase tracking-[0.32em] text-[#7A7A7A] font-medium relative inline-block">
                                 Excellency
                             </p>
+                            <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 w-6 h-px bg-[#C9A24D]/30 hidden lg:block"></div>
                         </motion.div>
 
                         {/* Enhanced Main quote with better typography */}
-                        <div className="relative space-y-2 sm:space-y-3 md:space-y-4">
-                            <div className="absolute -left-4 sm:-left-6 md:-left-8 top-0 text-4xl sm:text-5xl text-[#C9A24D]/20 select-none font-accent">
-                                "
-                            </div>
+                        <div className="relative space-y-3 sm:space-y-4 md:space-y-5 px-4 sm:px-6 md:px-8">
+                            {/* Decorative quote marks - Enhanced */}
+                            <div className="absolute -left-2 sm:-left-4 md:-left-6 lg:-left-8 top-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#C9A24D]/15 select-none font-accent leading-none">"</div>
+                            
                             <motion.h1 
-                                className="relative text-3xl sm:text-5xl font-heading font-medium leading-tight sm:leading-tight md:leading-tight lg:leading-tight text-[#0E0E0E] px-2 sm:px-4 tracking-[0.02em]"
+                                className="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-medium leading-[1.15] sm:leading-[1.12] md:leading-[1.1] text-[#0E0E0E] tracking-[0.01em] sm:tracking-[0.02em]"
                                 variants={fadeUp}
                                 initial="hidden"
                                 animate="visible"
                             >
                                 Creating standards.
-                                <br />
+                                <br className="hidden sm:block" />
+                                <span className="sm:hidden"> </span>
                                 Elevating experiences.
-                                <br />
+                                <br className="hidden sm:block" />
+                                <span className="sm:hidden"> </span>
                                 Redefining progress.
                             </motion.h1>
-                            <div className="absolute -right-4 sm:-right-6 md:-right-8 bottom-0 text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#C9A24D]/20 rotate-180 select-none font-accent">
-                                "
-                            </div>
+                            
+                            <div className="absolute -right-2 sm:-right-4 md:-right-6 lg:-right-8 bottom-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#C9A24D]/15 rotate-180 select-none font-accent leading-none">"</div>
+                            
+                            {/* Subtle underline accent */}
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-[#C9A24D]/20 to-transparent hidden sm:block"></div>
                         </div>
 
-                        {/* Elite Divider */}
+                        {/* Elite Divider - Enhanced */}
                         <div 
-                            className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5 py-4"
+                            className="flex items-center justify-center gap-4 sm:gap-5 md:gap-6 py-6 relative"
                             data-aos="fade-up"
                             data-aos-delay="100"
                         >
-                            <div className="h-px w-12 sm:w-16 md:w-20 bg-[#E5E5E0]" />
-                            <div className="h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-[#C9A24D]" />
-                            <div className="h-px w-12 sm:w-16 md:w-20 bg-[#E5E5E0]" />
+                            <div className="h-px flex-1 max-w-16 sm:max-w-20 md:max-w-24 bg-gradient-to-r from-transparent via-[#E5E5E0] to-[#E5E5E0]"></div>
+                            <div className="relative flex items-center gap-2">
+                                <div className="h-1.5 w-1.5 rounded-full bg-[#C9A24D]"></div>
+                                <div className="h-px w-2 bg-[#C9A24D]/40"></div>
+                                <div className="h-1.5 w-1.5 rounded-full bg-[#C9A24D]"></div>
+                            </div>
+                            <div className="h-px flex-1 max-w-16 sm:max-w-20 md:max-w-24 bg-gradient-to-l from-transparent via-[#E5E5E0] to-[#E5E5E0]"></div>
                         </div>
 
-                        {/* Signature section */}
+                        {/* Signature section - Enhanced */}
                         <div 
-                            className="space-y-3 sm:space-y-4 md:space-y-5 text-[#555555]"
+                            className="space-y-4 sm:space-y-5 md:space-y-6 text-[#555555] relative"
                             data-aos="fade-up"
                             data-aos-delay="150"
                         >
-                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed tracking-wide font-body">
+                            {/* Subtle background accent */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#C9A24D]/3 to-transparent rounded-lg -mx-4 sm:-mx-6 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out"></div>
+                            
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed tracking-[0.05em] font-body relative z-10">
                                 Founder & CEO
                             </p>
-                            <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5">
-                                <div className="h-px w-8 sm:w-10 md:w-12 bg-[#E5E5E0]" />
-                                <p className="text-sm sm:text-base md:text-base lg:text-lg uppercase tracking-[0.22em] text-[#C9A24D] font-heading font-medium">
+                            <div className="flex items-center justify-center gap-4 sm:gap-5 md:gap-6 relative z-10">
+                                <div className="h-px w-10 sm:w-12 md:w-16 bg-gradient-to-r from-transparent to-[#E5E5E0]"></div>
+                                <p className="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-[0.24em] text-[#C9A24D] font-heading font-medium px-4 sm:px-6">
                                     Arunar
                                 </p>
-                                <div className="h-px w-8 sm:w-10 md:w-12 bg-[#E5E5E0]" />
+                                <div className="h-px w-10 sm:w-12 md:w-16 bg-gradient-to-l from-transparent to-[#E5E5E0]"></div>
+                            </div>
+                            
+                            {/* Decorative accent dots */}
+                            <div className="flex items-center justify-center gap-2 pt-2">
+                                <div className="h-1 w-1 rounded-full bg-[#C9A24D]/40"></div>
+                                <div className="h-1 w-1 rounded-full bg-[#C9A24D]/60"></div>
+                                <div className="h-1 w-1 rounded-full bg-[#C9A24D]/40"></div>
                             </div>
                         </div>
+                        
+                        {/* Subtle decorative corner accent - bottom left */}
+                        <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-[#C9A24D]/10 hidden lg:block"></div>
                     </div>
                 </div>
             </section>
